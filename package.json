@@ -1,0 +1,62 @@
+{
+	"name": "@angorestan/angor",
+	"version": "0.0.1",
+	"description": "Simple and tiny Platform As A Service with Traefik and Redis and etc.",
+	"main": "dist/src/index.js",
+	"scripts": {
+		"build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./ -o ./dist",
+		"preview": "node dist/src/index.js",
+		"start": "ts-node -r tsconfig-paths/register src/index.ts",
+		"start:dev": "ts-node-dev -r tsconfig-paths/register src/index.ts",
+		"test": "jest",
+		"test:dev": "jest --watch",
+		"prettier": "prettier --write ."
+	},
+	"keywords": [
+		"angor",
+		"angorestan",
+		"traefik",
+		"redis"
+	],
+	"author": {
+		"name": "Angorstan",
+		"email": "support@angorestan.xyz",
+		"url": "https://angorestan.xyz"
+	},
+	"license": "MIT",
+	"workspaces": [
+		"packages/*"
+	],
+	"devDependencies": {
+		"@types/bcrypt": "^5.0.0",
+		"@types/colors": "^1.2.1",
+		"@types/cors": "^2.8.12",
+		"@types/express": "^4.17.13",
+		"@types/jest": "^28.1.1",
+		"@types/morgan": "^1.9.3",
+		"@types/multer": "^1.4.7",
+		"@types/node": "^17.0.42",
+		"@types/unzipper": "^0.10.5",
+		"jest": "^28.1.1",
+		"prettier": "^2.7.1",
+		"ts-jest": "^28.0.4",
+		"ts-node": "^10.8.1",
+		"ts-node-dev": "^2.0.0",
+		"tsconfig-paths": "^4.0.0",
+		"tscpaths": "^0.0.9",
+		"typescript": "^4.7.3"
+	},
+	"dependencies": {
+		"bcrypt": "^5.0.1",
+		"colors": "^1.4.0",
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.1",
+		"express": "^4.18.1",
+		"joi": "^17.6.0",
+		"morgan": "^1.10.0",
+		"multer": "^1.4.5-lts.1",
+		"redis": "^4.1.0",
+		"unzipper": "^0.10.11",
+		"winston": "^3.7.2"
+	}
+}

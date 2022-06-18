@@ -1,0 +1,7 @@
+/node_modules
+/dist
+/example/logs
+/example/uploads/*
+/example/apps/*
+
+!/example/uploads/test.zip

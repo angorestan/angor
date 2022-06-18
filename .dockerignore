@@ -1,0 +1,4 @@
+/example
+/node_modules
+docker-compose.yaml
+.env

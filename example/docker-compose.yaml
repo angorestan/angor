@@ -1,0 +1,59 @@
+version: "3.9"
+
+services:
+  angor:
+    image: angor
+    container_name: angor
+    ports:
+      - 3200:3200
+    environment:
+      - APP_DEST=/angor/apps
+      - UPLOAD_DEST=/angor/uploads
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=password
+    volumes:
+      - ./:/angor
+    networks:
+      - angor
+
+  redis:
+    image: redis
+    container_name: redis
+    restart: always
+    ports:
+      - 6379:6379
+    command: redis-server --requirepass password
+    networks:
+      - angor
+
+  traefik:
+    image: traefik
+    container_name: traefik
+    restart: always
+    ports:
+      - 80:80
+      - 8080:8080
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.yaml:/etc/traefik/traefik.yaml
+      - ./acme.json:/acme.json
+    networks:
+      - angor
+
+  whoami:
+    image: traefik/whoami
+    container_name: whoami
+    restart: always
+    ports:
+      - 8081:8081
+    command:
+      - --port=8081
+    networks:
+      - angor
+
+networks:
+  angor:
+    name: angor
+    external: true

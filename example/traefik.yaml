@@ -1,0 +1,36 @@
+api:
+  insecure: true
+  dashboard: true
+
+providers:
+  docker:
+    exposedByDefault: false
+    endpoint: "unix:///var/run/docker.sock"
+  redis:
+    endpoints:
+      - "redis:6379"
+    password: "password"
+  http:
+    endpoint: "http://host.docker.internal:3200/api/v1/traefik/v3/provider"
+    pollInterval: "60s"
+
+entryPoints:
+  http:
+    address: :80
+    http:
+      redirections:
+        entryPoint:
+          to: https
+          scheme: https
+          permanent: true
+
+  https:
+    address: :443
+
+certificatesResolvers:
+  cert:
+    acme:
+      email: "iamnonroot@gmail.com"
+      storage: "acme.json"
+      httpChallenge:
+        entryPoint: http
