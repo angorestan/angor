@@ -1,6 +1,7 @@
 // lib
 import { Auth } from "@lib/auth";
 import { Logger } from "@lib/logger";
+import "@lib/docker";
 // log init message
 Logger.info("Server wants to start");
 // get some env config and print theme
