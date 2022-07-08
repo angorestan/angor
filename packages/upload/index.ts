@@ -5,7 +5,7 @@ import router from "./routes";
 
 export default definePackage({
 	name: "upload",
-	prefix: "/upload/source",
+	prefix: "/upload",
 	routes: router,
 	auth: true,
 });

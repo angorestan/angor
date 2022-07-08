@@ -7,8 +7,8 @@ import { UploadMiddleware } from "./middleware";
 
 const router = Router();
 
-router.post("/:app/", UploadMiddleware.single("source"), Controller.AddUpload);
-router.get("/:app/", Controller.GetUploads);
+router.post("/:app", UploadMiddleware.single("source"), Controller.AddUpload);
+router.get("/:app", Controller.GetUploads);
 router.get("/:app/:id", Controller.GetUpload);
 router.get("/:app/:id/download", Controller.DownloadUpload);
 router.delete("/:app/prune", Controller.PruneUploads);
