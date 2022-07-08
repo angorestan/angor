@@ -40,7 +40,7 @@ export const AddUpload = async (req: Request, res: Response): Promise<void> => {
 				data: upload,
 			});
 		} else {
-			res.status(400).json({
+			res.json({
 				status: false,
 				code: 400,
 				message: "Failed to upload file",
@@ -153,7 +153,7 @@ export const PruneUploads = async (req: Request, res: Response): Promise<void> =
 			if (item.source.includes("upload:")) {
 				onuse = item.source.replace("upload:", "");
 			} else {
-				res.status(400).json({
+				res.json({
 					status: false,
 					code: 400,
 					message: "Invalid source",
@@ -194,14 +194,14 @@ export const DownloadUpload = async (req: Request, res: Response): Promise<void>
 				// download file
 				res.download(file);
 			} else {
-				res.status(404).json({
+				res.json({
 					status: false,
 					code: 404,
 					message: "File not found",
 				});
 			}
 		} else {
-			res.status(404).json({
+			res.json({
 				status: false,
 				code: 404,
 				message: "Upload not found",

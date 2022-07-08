@@ -31,7 +31,7 @@ export const GetApp = async (req: Request, res: Response): Promise<void> => {
 				data: app,
 			});
 		} else {
-			res.status(404).json({
+			res.json({
 				status: false,
 				code: 404,
 				message: "App not found",
@@ -81,7 +81,7 @@ export const GetAppTraefik = async (req: Request, res: Response): Promise<void> 
 				data: traefik,
 			});
 		} else {
-			res.status(404).json({
+			res.json({
 				status: false,
 				code: 404,
 				message: "Traefik config not found",
@@ -102,7 +102,7 @@ export const CreateApp = async (req: Request, res: Response): Promise<void> => {
 	try {
 		let body = req.body as IApp;
 		if (await AppService.IsAppExist(body.name)) {
-			res.status(409).json({
+			res.json({
 				status: false,
 				code: 409,
 				message: "App already exist",
@@ -138,7 +138,6 @@ export const CreateApp = async (req: Request, res: Response): Promise<void> => {
 			});
 		}
 	} catch (error) {
-		console.error(error);
 		Logger.error(error);
 		res.status(500).json({
 			status: false,
@@ -172,7 +171,7 @@ export const DeleteApp = async (req: Request, res: Response): Promise<void> => {
 				message: "App deleted",
 			});
 		} else {
-			res.status(404).json({
+			res.json({
 				status: false,
 				code: 404,
 				message: "App not found",
