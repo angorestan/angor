@@ -6,7 +6,7 @@ const { UPLOAD_DEST } = process.env;
 // create multer storage for zip files
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
-		if (file.mimetype === "application/zip") {
+		if (["application/zip", "application/x-zip-compressed"].includes(file.mimetype)) {
 			cb(null, UPLOAD_DEST as string);
 		} else {
 			cb(new Error("Invalid file type"), UPLOAD_DEST as string);
